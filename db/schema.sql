@@ -7,7 +7,7 @@ USE tracker_db;
 DROP TABLE IF EXISTS department;
 CREATE TABLE department (
   id INT PRIMARY KEY,
-  name VARCHAR(30) NOT NULL,
+  name VARCHAR(30) NOT NULL
 );
 
 DROP TABLE IF EXISTS role;
@@ -29,9 +29,9 @@ CREATE TABLE employee (
   role_id INT,
   manager_id INT,
   FOREIGN KEY (role_id) 
-  REFERENCES employee (id)
+  REFERENCES role (id)
+  ON DELETE SET NULL,
+  FOREIGN KEY (manager_id)
+  REFERENCES employee(id)
   ON DELETE SET NULL
-  FOREIGN KEY (manager_id) 
-  REFERENCES employee (id)
-  ON DELETE SET NULL                
 );
